@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InvoiceSnap</title>
+
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SC3XQNT64L');
+</script>
+<!-- End Google Analytics -->
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="container">
+
+  <!-- Header -->
+  <header id="header_container">
+    <h1 id="invoice_logo">InvoiceSnap</h1>
+    <!-- يمكنك إضافة شعار الشركة لاحقًا -->
+    <img id="company_logo" src="" alt="" style="max-height:60px; display:none;">
+    <input type="file" id="logo_upload" accept="image/*">
+  </header>
+
+  <main id="main_container">
+
+    <!-- Invoice Summary -->
+    <div id="invoice_summary">
+
+      <div class="summary">
+        <h2>Invoice To</h2>
+        <input type="text" id="customer_name">
+      </div>
+
+      <div class="summary">
+        <h2>Invoice No</h2>
+        <input type="text" id="invoice_no">
+      </div>
+
+      <div class="summary">
+        <h2>Date</h2>
+        <input type="date" id="invoice_date">
+      </div>
+
+      <div class="summary">
+        <h2>Currency</h2>
+        <select id="currency">
+          <option value="$">USD $</option>
+          <option value="€">EUR €</option>
+          <option value="₺">TRY ₺</option>
+          <option value="£">GBP £</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Invoice Table -->
+    <div id="invoice_table">
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="invoice_items">
+          <tr>
+            <td>1</td>
+            <td><input type="text" class="item_desc"></td>
+            <td><input type="number" class="item_qty" value="1"></td>
+            <td><input type="number" class="item_price" value="0"></td>
+            <td class="item_total">$0.00</td>
+            <td><button class="remove_item">X</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="add_item">Add Item</button>
+    </div>
+
+    <!-- Payment Summary -->
+    <div id="payment_summary">
+      <p>Subtotal: <span id="subtotal">$0.00</span></p>
+      <p>Tax (15%): <span id="tax">$0.00</span></p>
+      <h3>Total: <span id="total">$0.00</span></h3>
+    </div>
+
+    <!-- Buttons -->
+    <div id="buttons">
+      <button onclick="window.print()">Download PDF</button>
+      <button id="new_invoice">New Invoice</button>
+      <button id="save_invoice">Save Invoice</button>
+    </div>
+
+    <!-- Watermark -->
+    <p id="watermark">Created with <strong>InvoiceSnap</strong></p>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
