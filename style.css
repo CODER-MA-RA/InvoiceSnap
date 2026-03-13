@@ -33,6 +33,25 @@ body {
   padding: 10px;
 }
 
+#tax_row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#tax_rate {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#tax_rate:focus {
+  outline: none;
+  border-color: #0073ff;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

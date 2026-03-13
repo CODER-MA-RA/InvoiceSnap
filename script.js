@@ -3,6 +3,7 @@ const subtotalTd = document.getElementById('subtotal');
 const taxTd = document.getElementById('tax');
 const totalTd = document.getElementById('total');
 const currencySelect = document.getElementById("currency");
+const taxRateInput = document.getElementById("tax_rate");
 let currencySymbol="$";
 
 // تغيير العملة
@@ -10,6 +11,9 @@ currencySelect.addEventListener("change",()=> {
   currencySymbol = currencySelect.value;
   calculateTotals();
 });
+
+// تغيير نسبة الضريبة
+taxRateInput.addEventListener("input", calculateTotals);
 
 // حساب صف واحد
 function calculateRowTotal(row){
@@ -26,8 +30,11 @@ function calculateTotals(){
   invoiceItems.querySelectorAll('tr').forEach(row=>{
     subtotal += calculateRowTotal(row);
   });
-  const tax = subtotal*0.15;
+  
+  const taxRate = taxRateInput.valueAsNumber || 0;
+  const tax = subtotal * (taxRate / 100);
   const total = subtotal + tax;
+  
   subtotalTd.textContent = `${currencySymbol}${subtotal.toFixed(2)}`;
   taxTd.textContent = `${currencySymbol}${tax.toFixed(2)}`;
   totalTd.textContent = `${currencySymbol}${total.toFixed(2)}`;
@@ -81,8 +88,6 @@ logoUpload.addEventListener("change", function(){
     reader.readAsDataURL(file);
   }
 });
-
-
 
 // الحساب الأولي
 calculateTotals();
