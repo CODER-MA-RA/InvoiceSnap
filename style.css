@@ -19,6 +19,9 @@ body {
 
 #invoice_logo {
   color: #0073ff;
+  font-size:28px;
+  font-weight:bold;
+  letter-spacing:1px;
 }
 
 #invoice_summary {
@@ -31,25 +34,6 @@ body {
   flex: 1;
   background: #f2f2f2;
   padding: 10px;
-}
-
-#tax_row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-#tax_rate {
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-#tax_rate:focus {
-  outline: none;
-  border-color: #0073ff;
 }
 
 table {
@@ -85,6 +69,10 @@ button {
 }
 
 @media print {
-  button { display: none; }
+  button, #logo_upload, #add_item, .remove_item, #buttons {
+    display:none;
+  }
   body { background: white; }
+  #container { max-width: 100%; padding: 0; margin:0; }
+  table { font-size:14px; }
 }
