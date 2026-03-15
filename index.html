@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InvoiceSnap</title>
+  <title>InvoiceSnap - Professional Billing</title>
   <link rel="stylesheet" href="style.css">
   <!-- Google site verification -->
   <meta name="google-site-verification" content="nJoV9_6KdoVzk6oo9cxmeOWgnYPKB75zQei9kT6Ixuc" />
@@ -16,103 +16,98 @@
 
   <!-- Header -->
   <header id="header_container">
-    <h1 id="invoice_logo">InvoiceSnap</h1>
-    <img id="company_logo" src="" alt="" style="max-height:60px; display:none;">
-    <input type="file" id="logo_upload" accept="image/*">
-  </header>
+        <div class="logo_brand">
+            <h1 id="invoice_logo">InvoiceSnap</h1>
+            <p style="color: var(--text-secondary); font-size: 12px;">Premium Billing Solution</p>
+        </div>
+        <div class="logo_section">
+            <img id="company_logo" src="" alt="Company Logo" style="max-height:70px; display:none;">
+            <input type="file" id="logo_upload" accept="image/*">
+        </div>
+    </header>
 
   <main id="main_container">
 
     <!-- Invoice Summary -->
     <div id="invoice_summary">
-      <div class="summary">
-        <h2>Invoice To</h2>
-        <input type="text" id="customer_name">
-      </div>
-      <div class="summary">
-        <h2>Invoice No</h2>
-        <input type="text" id="invoice_no">
-      </div>
-      <div class="summary">
-        <h2>Date</h2>
-        <input type="date" id="invoice_date">
-      </div>
-      <div class="summary">
-        <h2>Currency</h2>
-        <select id="currency">
-          <option value="$">USD $</option>
-          <option value="€">EUR €</option>
-          <option value="₺">TRY ₺</option>
-          <option value="£">GBP £</option>
-          <option value="¥">JPY ¥</option>
-          <option value="C$">CAD C$</option>
-          <option value="A$">AUD A$</option>
-          <option value="CHF">CHF</option>
-          <option value="₹">INR ₹</option>
-          <option value="₽">RUB ₽</option>
-          <option value="₩">KRW ₩</option>
-          <option value="R$">BRL R$</option>
-          <option value="MX$">MXN MX$</option>
-          <option value="₫">VND ₫</option>
-          <option value="₪">ILS ₪</option>
-          <option value="₱">PHP ₱</option>
-          <option value="₦">NGN ₦</option>
-          <option value="د.إ">AED</option>
-          <option value="﷼">SAR</option>
-          <option value="₴">UAH</option>
-          <option value="zł">PLN zł</option>
-        </select>
-      </div>
-    </div>
-
+      <div id="invoice_summary">
+            <div class="summary">
+                <label>Client Name</label>
+                <input type="text" id="customer_name" placeholder="Who is this to?">
+            </div>
+            <div class="summary">
+                <label>Invoice Number</label>
+                <input type="text" id="invoice_no">
+            </div>
+            <div class="summary">
+                <label>Billing Date</label>
+                <input type="date" id="invoice_date">
+            </div>
+            <div class="summary">
+                <label>Currency</label>
+                <select id="currency">
+                    <option value="$">USD - US Dollar</option>
+                    <option value="€">EUR - Euro</option>
+                    <option value="£">GBP - British Pound</option>
+                    <option value="¥">JPY - Japanese Yen</option>
+                    <option value="د.إ">AED - UAE Dirham</option>
+                    <option value="ر.س">SAR - Saudi Riyal</option>
+                    <option value="د.ك">KWD - Kuwaiti Dinar</option>
+                    <option value="ر.ق">QAR - Qatari Riyal</option>
+                    <option value="د.ب">BHD - Bahraini Dinar</option>
+                    <option value="ر.ع">OMR - Omani Rial</option>
+                    <option value="ج.م">EGP - Egyptian Pound</option>
+                    <option value="د.أ">JOD - Jordanian Dinar</option>
+                    <option value="₺">TRY - Turkish Lira</option>
+                    <option value="₹">INR - Indian Rupee</option>
+                    <option value="C$">CAD - Canadian Dollar</option>
+                    <option value="A$">AUD - Australian Dollar</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="R$">BRL - Brazilian Real</option>
+                    <option value="zł">PLN - Polish Złoty</option>
+                </select>
+            </div>
+        </div>
     <!-- Invoice Table -->
-    <div id="invoice_table">
-      <table>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Description</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Tax %</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="invoice_items">
-          <tr>
-            <td>1</td>
-            <td><input type="text" class="item_desc"></td>
-            <td><input type="number" class="item_qty" value="1"></td>
-            <td><input type="number" class="item_price" value="0"></td>
-            <td><input type="number" class="item_tax" value="0"></td>
-            <td class="item_total">$0.00</td>
-            <td><button class="remove_item">X</button></td>
-          </tr>
-        </tbody>
-      </table>
-      <button id="add_item">Add Item</button>
-    </div>
+     <div id="invoice_table">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="5%">#</th>
+                        <th width="45%">Description</th>
+                        <th width="10%">Qty</th>
+                        <th width="15%">Price</th>
+                        <th width="10%">Tax %</th>
+                        <th width="15%">Total</th>
+                        <th width="5%"></th>
+                    </tr>
+                </thead>
+                <tbody id="invoice_items">
+                    </tbody>
+            </table>
+            <button id="add_item" class="btn_secondary">+ Add New Item</button>
+        </div>
+        <!-- Payment Summary -->
+        <div id="payment_summary">
+            <div class="total_box">
+                <p>Grand Total</p>
+                <h3 id="total">$0.00</h3>
+            </div>
+        </div>
 
-    <!-- Payment Summary -->
-    <div id="payment_summary">
-      <h3>Total: <span id="total">$0.00</span></h3>
-    </div>
 
     <!-- Buttons -->
-    <div id="buttons">
-      <button onclick="window.print()">Download PDF</button>
-      <button id="copy_invoice">Copy Invoice</button>
-      <button id="share_invoice">Share Invoice</button>
-      <button id="new_invoice">New Invoice</button>
-      <button id="save_invoice">Save Invoice</button>
-    </div>
+     <div id="buttons">
+            <button onclick="window.print()" class="btn_primary">Download PDF</button>
+            <button id="save_invoice">Save Draft</button>
+            <button id="copy_invoice">Copy Text</button>
+            <button id="share_invoice">Share Link</button>
+            <button id="new_invoice" style="color: var(--danger-color);">Reset</button>
+        </div>
 
-    <!-- Watermark -->
-    <p id="watermark">Created with <strong>InvoiceSnap</strong></p>
-
-  </main>
-
+        <!-- Watermark -->
+        <p id="watermark">Generated by <strong>InvoiceSnap</strong></p>
+    </main>
 </div>
 
 <script src="script.js"></script>
