@@ -6,13 +6,11 @@ let currencySymbol = "$";
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
     loadFromLocalStorage();
-    if (invoiceItems.rows.length === 0) addItem(); // Add one row by default
+    if (invoiceItems.rows.length === 0) addItem(); 
     
-    // Auto Date
     if(!document.getElementById("invoice_date").value) {
         document.getElementById("invoice_date").value = new Date().toISOString().split("T")[0];
     }
-    // Auto Invoice No
     if(!document.getElementById("invoice_no").value) {
         document.getElementById("invoice_no").value = 'INV-' + Math.floor(1000 + Math.random() * 9000);
     }
@@ -34,6 +32,11 @@ function addItem(desc = "", qty = 1, price = 0, tax = 0) {
     `;
     invoiceItems.appendChild(row);
     updateRowNumbers();
+
+    // [تتبع]: إرسال حدث عند إضافة بند جديد
+    if (typeof gtag === 'function') {
+        gtag('event', 'add_item', { 'event_category': 'engagement' });
+    }
 }
 
 // Global Event Listeners
@@ -45,6 +48,11 @@ invoiceItems.addEventListener("click", e => {
         calculateTotals();
         updateRowNumbers();
         saveToLocalStorage();
+        
+        // [تتبع]: إرسال حدث عند حذف بند
+        if (typeof gtag === 'function') {
+            gtag('event', 'remove_item', { 'event_category': 'engagement' });
+        }
     }
 });
 
@@ -77,7 +85,6 @@ function calculateTotals() {
     
     totalTd.textContent = `${currencySymbol}${grandTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
     
-    // Animation effect
     totalTd.style.transform = "scale(1.05)";
     setTimeout(() => totalTd.style.transform = "scale(1)", 100);
 }
@@ -134,6 +141,10 @@ function loadFromLocalStorage() {
 
 document.getElementById("new_invoice").addEventListener("click", () => {
     if(confirm("Are you sure? This will delete the current draft.")) {
+        // [تتبع]: إرسال حدث عند تصفير البيانات
+        if (typeof gtag === 'function') {
+            gtag('event', 'clear_invoice_draft', { 'event_category': 'action' });
+        }
         localStorage.removeItem("invoiceSnap_data");
         location.reload();
     }
@@ -144,6 +155,17 @@ document.getElementById("copy_invoice").addEventListener("click", () => {
     const total = totalTd.textContent;
     const client = document.getElementById("customer_name").value || "Valued Client";
     const msg = `Invoice from InvoiceSnap\nClient: ${client}\nTotal: ${total}\nGenerated via Web App.`;
+    
+    // [تتبع]: إرسال حدث "التحويل الرئيسي" عند نسخ الفاتورة
+    if (typeof gtag === 'function') {
+        gtag('event', 'share_invoice', {
+            'event_category': 'conversion',
+            'event_label': 'Copy Clipboard',
+            'value': parseFloat(total.replace(/[^0-9.-]+/g,"")) || 0,
+            'currency': currencySelect.value || 'USD'
+        });
+    }
+
     navigator.clipboard.writeText(msg);
     notify("Invoice Summary Copied! 📋");
 });
